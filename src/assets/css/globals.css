@@ -20,9 +20,15 @@ body, html{
 }
 
 .coffee-animate{
-    animation: coffee 0.5s ease-in-out;
-    animation-iteration-count: 1;
     transform: translateY(500px) scale(1.7);
+}
+
+.info{
+    transition: 0.8s;
+}
+
+.info-animate{
+    transform: translateY(-100px)
 }
 /* 
 @keyframes coffee{

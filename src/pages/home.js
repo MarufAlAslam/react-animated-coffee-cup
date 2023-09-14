@@ -7,10 +7,24 @@ import expresso from "../assets/img/expresso.png";
 import frappe from "../assets/img/frappe.png";
 import tableTop from "../assets/img/table-top.png";
 
+import { GrChapterNext, GrChapterPrevious } from "react-icons/gr";
+
 const Home = () => {
-  const addToTable = () => {
+  const addToTable = (e) => {
     const coffee = document.querySelector(".coffee");
+    const info = document.querySelector(".info");
     coffee.classList.add("coffee-animate");
+
+    e.target.classList.add("hidden");
+
+    info.classList.add("info-animate");
+
+    // add onclick to coffee-animate
+    coffee.addEventListener("click", () => {
+      coffee.classList.remove("coffee-animate");
+      info.classList.remove("info-animate");
+      e.target.classList.remove("hidden");
+    });
   };
 
   const coffeeData = [
@@ -77,21 +91,27 @@ const Home = () => {
         <div className="container flex flex-col justify-between items-center lg:w-[30%] md:w-[75%] w-[95%] h-full bg-[#ECE0D1] rounded-[20px] overflow-hidden">
           <div className="text-center p-[30px] w-full">
             <div className="flex justify-between items-center gap-2">
-              <button onClick={()=>prevData(parseInt(displayData.id))}>prev</button>
+              <button onClick={() => prevData(parseInt(displayData.id))}>
+                <GrChapterPrevious className="text-3xl" />
+              </button>
               <div className="coffee-holder">
                 <img
                   src={displayData.img}
                   className="coffee relative block mx-auto mb-4"
                   alt=""
                 />
-                <h2 className="font-bold text-5xl mb-2 text-[#38220F]">
-                  {displayData.name}
-                </h2>
-                <h4 className="text-2xl font-semibold text-[#38220F]">
-                  BDT {displayData.price}
-                </h4>
+                <div className="info">
+                  <h2 className="font-bold text-5xl mb-2 text-[#38220F]">
+                    {displayData.name}
+                  </h2>
+                  <h4 className="text-2xl font-semibold text-[#38220F]">
+                    BDT {displayData.price}
+                  </h4>
+                </div>
               </div>
-              <button onClick={()=>nextData(parseInt(displayData.id))}>next</button>
+              <button onClick={() => nextData(parseInt(displayData.id))}>
+                <GrChapterNext className="text-3xl" />
+              </button>
             </div>
 
             <button
